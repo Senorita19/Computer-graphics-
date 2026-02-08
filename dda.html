@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>DDA Line Drawing Algorithm</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="600"
+      height="400"
+      style="border: 1px solid black"
+    ></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      function plot(x, y) {
+        ctx.fillRect(x, y, 1, 1);
+      }
+
+      function ddaLine(x1, y1, x2, y2) {
+        let dx = x2 - x1;
+        let dy = y2 - y1;
+        let steps = Math.max(Math.abs(dx), Math.abs(dy));
+        let xInc = dx / steps;
+        let yInc = dy / steps;
+
+        let x = x1;
+        let y = y1;
+        for (let i = 0; i <= steps; i++) {
+          plot(Math.round(x), Math.round(y));
+          x += xInc;
+          y += yInc;
+        }
+      }
+
+      ddaLine(250, 50, 400, 200);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Midpoint Circle Drawing Algorithm</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="600"
+      height="400"
+      style="border: 1px solid black"
+    ></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      function plot(x, y) {
+        ctx.fillRect(x, y, 1, 1);
+      }
+
+      function midpointCircle(xc, yc, r) {
+        let x = 0;
+        let y = r;
+        let d = 1 - r;
+
+        while (x <= y) {
+          plot(xc + x, yc + y);
+          plot(xc - x, yc + y);
+          plot(xc + x, yc - y);
+          plot(xc - x, yc - y);
+          plot(xc + y, yc + x);
+          plot(xc - y, yc + x);
+          plot(xc + y, yc - x);
+          plot(xc - y, yc - x);
+
+          if (d < 0) {
+            d += 2 * x + 3;
+          } else {
+            d += 2 * (x - y) + 5;
+            y--;
+          }
+          x++;
+        }
+      }
+
+      midpointCircle(150, 250, 80);
+    </script>
+  </body>
+</html>
